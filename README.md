@@ -2,9 +2,9 @@ Docker Cheatsheet
 ===
 Table of content
 ---
-[1.Install](#centos-75-installation)
-Install
----
+[1.Install](#blah)
+
+## 1.Install
 
 ### CentOS 7.5 installation
 [link](https://docs.docker.com/install/linux/docker-ce/centos/)
