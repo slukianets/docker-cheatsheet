@@ -2,7 +2,7 @@ Docker Cheatsheet
 ===
 Table of content
 ---
-[1.Install](#blah)
+[1.Install](#1install)
 
 ## 1.Install
 
