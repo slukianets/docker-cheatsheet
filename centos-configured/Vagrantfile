@@ -1,0 +1,44 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+$docker_setup = <<-SCRIPT
+echo "Setting up docker ce.."
+
+if [ -e /etc/vagrant_provisioned_at ]
+  then
+    echo "Already provisioned, skipping"
+    exit 0
+fi
+
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install -y docker-ce docker-ce-cli containerd.io
+systemctl enable docker
+systemctl start docker
+
+date > /etc/vagrant_provisioned_at
+echo "Provisioning completed!"
+SCRIPT
+
+Vagrant.configure('2') do |config|
+
+  config.vm.define 'centos7' do |c7|
+    c7.vm.box = 'bento/centos-7.6'
+
+    # Prevent vbguest plugin from installing latest guest additions
+    c7.vbguest.auto_update = false if Vagrant.has_plugin?('vagrant-vbguest')
+
+    c7.vm.network :private_network, type: 'dhcp'
+    c7.vm.network "forwarded_port", guest: 80, host: 3080
+    c7.vm.network "forwarded_port", guest: 4000, host: 3400
+
+    c7.vm.synced_folder "./", "/vagrant"
+
+    c7.vm.provider :virtualbox do |vb|
+      vb.customize ['modifyvm', :id, '--memory', '2048']
+      vb.customize ['modifyvm', :id, '--cpuexecutioncap', '80']
+    end
+
+    # setup docker
+    c7.vm.provision "shell", inline: $docker_setup
+  end
+end

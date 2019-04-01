@@ -7,7 +7,7 @@ Table of content
 
 ## 1. Install
 
-### 1.1 CentOS 7.5 installation
+### 1.1 CentOS 7.x installation
 [link](https://docs.docker.com/install/linux/docker-ce/centos/)
 ##### install
 ```
@@ -23,7 +23,13 @@ sudo systemctl status docker
 sudo docker info
 sudo docker run hello-world
 ```
-### 1.2 Ubuntu 18.04 installation
+### 1.2 CentOS 7.6 with Vagrant/Virtualbox
+```
+cd centos-configured
+vagrant up
+vagrant ssh
+```
+### 1.3 Ubuntu 18.04 installation
 [link](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 ##### install
 ```
