@@ -2,8 +2,8 @@ Docker Cheatsheet
 ===
 Table of content
 ---
-1. [Install](#1install)
-2. [First Containers](#2first-containers)
+1. [Install](#1-install)
+2. [First Containers](#2-first-containers)
 
 ## 1. Install
 
@@ -54,20 +54,19 @@ du -sh / 2>/dev/null
 ##### ubuntu
 ```
 docker run -it ubuntu
-cat /etc/debian_release
+cat /etc/debian_version
 cat /etc/issue
 du -sh / 2>/dev/null
 ```
 ##### alpine
 ```
 docker run -it alpine
+cat /etc/alpine-release
 cat /etc/issue
 du -sh / 2>/dev/null
 ```
 ##### busybox
 ```
 docker run -it busybox
-cat /etc/debian_release
-cat /etc/issue
-du -sh / 2>/dev/null
+du -sh /
 ```
