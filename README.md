@@ -2,11 +2,12 @@ Docker Cheatsheet
 ===
 Table of content
 ---
-[1.Install](#1install)
+1. [Install](#1install)
+2. [First Containers](#2first-containers)
 
-## 1.Install
+## 1. Install
 
-### CentOS 7.5 installation
+### 1.1 CentOS 7.5 installation
 [link](https://docs.docker.com/install/linux/docker-ce/centos/)
 ##### install
 ```
@@ -22,7 +23,7 @@ sudo systemctl status docker
 sudo docker info
 sudo docker run hello-world
 ```
-### Ubuntu 18.04 installation
+### 1.2 Ubuntu 18.04 installation
 [link](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 ##### install
 ```
@@ -30,7 +31,7 @@ sudo apt-get update
 sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo apt-get-update
+sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
 ##### verify
@@ -38,4 +39,35 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 sudo systemctl status docker
 sudo docker info
 sudo docker run hello-world
+```
+## 2. First Containers
+##### hello-world
+```
+docker run hello-world
+```
+##### centos
+```
+docker run -it centos
+cat /etc/centos-release
+du -sh / 2>/dev/null
+```
+##### ubuntu
+```
+docker run -it ubuntu
+cat /etc/debian_release
+cat /etc/issue
+du -sh / 2>/dev/null
+```
+##### alpine
+```
+docker run -it alpine
+cat /etc/issue
+du -sh / 2>/dev/null
+```
+##### busybox
+```
+docker run -it busybox
+cat /etc/debian_release
+cat /etc/issue
+du -sh / 2>/dev/null
 ```
