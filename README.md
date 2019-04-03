@@ -160,9 +160,14 @@ docker rm
 cd /vagrant
 touch Dockerfile
 # edit ...
-cat Dockerfile
+```
+##### cat Dockerfile
+```
 FROM centos
 RUN yum install -y bind-utils
+```
+##### build
+```
 # docker build -t tag, nslookup - image name
 docker build -t nslookup .
 ```
@@ -172,4 +177,21 @@ FROM centos
 RUN yum install -y bind-utils
 ENTRYPOINT ["nslookup"]
 CMD ["google.com"]
+```
+### 5.2 Dockerfile basic instructions
+`FROM` - define which container loaded on current step. Used to define starting build point
+```
+FROM centos
+```
+`RUN` - define command which run in container in current step. Used to record actions in container
+```
+RUN yum clean && yum update metadata && yum update
+RUN wget https://artifactory.intranet/generic-windows/app.msi
+```
+`ENTRYPOINT` - define command that run during container starting
+`CMD` - does the same.
+`ENTRYPOINT` vs `CMD` diff: ENTRYPOINT not overrided during container run
+```
+ENTRYPOINT ["echo"]
+CMD ["hello"]
 ```
