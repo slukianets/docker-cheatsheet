@@ -6,6 +6,9 @@ Table of content
 2. [First Containers](#2-first-containers)
 3. [container commands](#3-container-commands)
 4. [images commands](#4-images-commands)
+5. [Dockerfile](#5-dockerfile)
+100. [Links](#100-links)
+
 
 ## 1. Install
 
@@ -195,3 +198,84 @@ RUN wget https://artifactory.intranet/generic-windows/app.msi
 ENTRYPOINT ["echo"]
 CMD ["hello"]
 ```
+`COPY` - copy files into docker containers, from context and other containers
+```
+COPY /app /opt
+```
+
+```
+FROM ubuntu as 'builder'
+RUN ...
+...
+COPY --from /opt/hello/hello /bin/hello
+```
+
+`ENV` - set container environment variable
+```
+FROM ubuntu
+ENV PG_MAJOR 9.3
+ENV PG_VERSION 9.3.4
+...
+```
+
+`EXPOSE` - expose container networking ports
+```
+EXPOSE 80
+EXPOSE 80/tcp
+EXPOSE 80/udp
+```
+### 5.3 flask-hello example
+https://pythonspot.com/flask-hello-world/
+```python
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+if __name__ == "__main__":
+    app.run()
+```
+commands:
+```
+docker run -it centos
+# centos
+yum install -y epel-release
+yum install -y pip
+pip install flask
+```
+### 5.4 multistage example
+```c
+int main () {
+  puts("Hello, world!");
+  return 0;
+}
+```
+commands:
+```
+yum install gcc make
+make hello
+```
+
+## 6 Docker volumes
+```
+docker volume create app_config
+docker volume rm app_config
+docker volume ls
+docker volume inspect
+```
+
+```
+# docker volume create app_config
+# docker run -d -P -v app_config:/opt/config nginx
+
+# mkdir /opt/nginx_config
+# docker run -d -P -v /opt/nginx_config:/opt/config nginx
+```
+## 100. Links
+**https://container.training/  - BiS**
+
+** https://github.com/wsargent/docker-cheat-sheet - comprehensive cheat-sheet**
+
+https://docs.docker.com/ - official documentation
