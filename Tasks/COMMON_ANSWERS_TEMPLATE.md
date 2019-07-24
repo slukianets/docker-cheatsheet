@@ -61,6 +61,6 @@ root       417  0.0  0.2   7640  2744 pts/0    R+   10:54   0:00 ps aux
 
 ### 8. compile c program
 ```
-ubuntu sha256:
-centos sha256:
+ubuntu sha256: 751613838cb1bdbe778ca405d74e2911dd0ab4a0d0584ac740be30906694e38c  /hello
+centos sha256: 90635dcf93c75a7185bc85c4ab22f598e422fc1272ecde70fbc792edf2df59c5  /hello
 ```
